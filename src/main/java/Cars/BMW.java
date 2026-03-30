@@ -16,6 +16,7 @@ public class BMW extends Car {
         this.series = series;
     }
 
+    @Override
     public String getFullInfo() {
         return super.getFullInfo() + String.format(", серия: %s", series);
     }
