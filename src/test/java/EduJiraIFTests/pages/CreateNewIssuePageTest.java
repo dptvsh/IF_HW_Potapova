@@ -6,6 +6,7 @@ import EduJiraIFTests.WebHooks;
 import config.ConfigReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class CreateNewIssuePageTest extends WebHooks {
@@ -13,6 +14,7 @@ public class CreateNewIssuePageTest extends WebHooks {
 
     @Test
     @DisplayName("5. Создание нового бага и перевод его в статус 'Выполнено'")
+    @Tag("HW3")
     public void checkTask() {
         CreateNewIssuePage newIssuePage = loginPage.login(
                         ConfigReader.get("username"),

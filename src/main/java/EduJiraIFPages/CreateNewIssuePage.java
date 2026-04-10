@@ -35,7 +35,7 @@ public class CreateNewIssuePage {
             "//label[@for='environment']/following-sibling::div//li[@data-mode='wysiwyg']/child::button"
     ).as("Кнопка 'Визуальный' в окружении");
     private final SelenideElement affectedVersions = $x(
-            "//label[@for='versions']/following-sibling::select//option[@value='-1']"
+            "//label[@for='versions']/following-sibling::select/child::option"
     ).as("Поле 'Затронуты версии'");
     private final SelenideElement relatedIssues = $x("//select[@id='issuelinks-linktype']")
             .as("Поле 'Связанные задачи'");
@@ -49,9 +49,9 @@ public class CreateNewIssuePage {
             .as("Поле 'Ссылка на эпик'");
     private final SelenideElement sprint = $x("//input[@id='customfield_10104-field']")
             .as("Поле 'Спринт'");
-    private final SelenideElement severity = $x("//select[@name='customfield_10400']")
+    private final SelenideElement severity = $x("//option[starts-with(text(),'S0')]/..")
             .as("Поле 'Серьезность'");
-    private final SelenideElement severityTrivial = $x("//option[@value='10100']")
+    private final SelenideElement severityTrivial = $x("//option[starts-with(text(),'S0')]")
             .as("Пункт 'Тривиальный'");
     private final SelenideElement createButton = $x("//input[@id='create-issue-submit']")
             .as("Кнопка 'Создать'");

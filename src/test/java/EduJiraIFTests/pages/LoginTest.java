@@ -6,6 +6,7 @@ import EduJiraIFTests.WebHooks;
 import config.ConfigReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class LoginTest extends WebHooks {
@@ -13,6 +14,7 @@ public class LoginTest extends WebHooks {
 
     @Test
     @DisplayName("1. Авторизация")
+    @Tag("HW3")
     public void loginTest() {
         DashboardPage dashboardPage = loginPage.login(
                 ConfigReader.get("username"),

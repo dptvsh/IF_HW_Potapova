@@ -6,6 +6,7 @@ import EduJiraIFTests.WebHooks;
 import config.ConfigReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class BrowsePageTest extends WebHooks {
@@ -13,10 +14,12 @@ public class BrowsePageTest extends WebHooks {
 
     @Test
     @DisplayName("4. Проверка полей задачи 'TestSeleniumATHomework'")
+    @Tag("HW3")
     public void checkTask() {
         BrowsePage browsePage = loginPage.login(
                         ConfigReader.get("username"),
                         ConfigReader.get("password"))
+                .shouldBeVisible()
                 .findTestSelenium();
 
         Assertions.assertEquals("сделать", browsePage.getStatus().toLowerCase(),

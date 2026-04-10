@@ -7,6 +7,7 @@ import com.codeborne.selenide.Selenide;
 import config.ConfigReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class ProjectsPageTest extends WebHooks {
@@ -14,6 +15,7 @@ public class ProjectsPageTest extends WebHooks {
 
     @Test
     @DisplayName("3. Проверка счетчика задач")
+    @Tag("HW3")
     public void checkIssuesCounterTest() {
         ProjectsPage projectsPage = loginPage.login(
                 ConfigReader.get("username"),

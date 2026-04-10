@@ -3,6 +3,7 @@ package EduJiraIFPages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,10 +29,12 @@ public class ProjectsPage {
     }
 
     public ProjectsPage goToAllTasks() {
+        String oldCounter = taskCounter.getText();
         changeFilter.shouldBe(Condition.visible).click();
         allTasks.shouldBe(Condition.visible).click();
         allTasksTitle.shouldBe(Condition.visible)
                 .shouldHave(Condition.textCaseSensitive("Все задачи"));
+        taskCounter.shouldNotHave(Condition.exactText(oldCounter), Duration.ofSeconds(5));
         return this;
     }
 
@@ -41,7 +44,7 @@ public class ProjectsPage {
     }
 
     public int getTotalIssuesCount() {
-        String counterText = taskCounter.shouldBe(Condition.visible).getText();
+        String counterText = taskCounter.shouldBe(Condition.visible, Duration.ofSeconds(10)).getText();
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(counterText);
         ArrayList<String> numbers = new ArrayList<>();

@@ -27,6 +27,11 @@ public class DashboardPage {
         }
     }
 
+    public DashboardPage shouldBeVisible() {
+        profile.shouldBe(Condition.visible, Duration.ofSeconds(5));
+        return this;
+    }
+
     public ProjectsPage goToProjectsPage() {
         projects.shouldBe(Condition.visible).click();
         test.shouldBe(Condition.visible).click();

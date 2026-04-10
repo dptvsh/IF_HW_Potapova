@@ -15,7 +15,7 @@ public class WebHooks {
         Configuration.pageLoadStrategy = PageLoadStrategy.EAGER.toString();
         Configuration.browser = "chrome";
         Configuration.timeout = 10000;
-        Selenide.open(ConfigReader.get("url"));
+        Selenide.open(ConfigReader.get("base.url"));
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
 
