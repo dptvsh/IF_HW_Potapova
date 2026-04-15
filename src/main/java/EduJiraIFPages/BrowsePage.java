@@ -3,6 +3,8 @@ package EduJiraIFPages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BrowsePage {
@@ -17,6 +19,10 @@ public class BrowsePage {
 
     public String getStatus() {
         return status.shouldBe(Condition.visible).getText();
+    }
+
+    public void waitForStatus(String expectedStatus, int seconds) {
+        status.shouldHave(Condition.text(expectedStatus), Duration.ofSeconds(seconds));
     }
 
     public String getFixVersion() {

@@ -21,6 +21,6 @@ public class LoginTest extends WebHooks {
                 ConfigReader.get("password")
         );
 
-        Assertions.assertTrue(dashboardPage.isOpened(), "После авторизации не открылась страница Dashbord.");
+        Assertions.assertTrue(dashboardPage.isOpened(), "После авторизации не открылась страница Dashboard.");
     }
 }
