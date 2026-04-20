@@ -18,15 +18,6 @@ public class DashboardPage {
     private final SelenideElement searchField = $x("//input[@id='quickSearchInput']")
             .as("Поле быстрого поиска");
 
-    public boolean isOpened() {
-        try {
-            profile.shouldBe(Condition.visible, Duration.ofSeconds(10));
-            return true;
-        } catch (AssertionError e) {
-            return false;
-        }
-    }
-
     public DashboardPage shouldBeVisible() {
         profile.shouldBe(Condition.visible, Duration.ofSeconds(5));
         return this;

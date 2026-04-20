@@ -31,6 +31,6 @@ public class LoginSteps {
 
     @Тогда("пользователь успешно входит в систему")
     public void dashboardShouldBeVisible() {
-        context.dashboardPage.isOpened();
+        context.dashboardPage.shouldBeVisible();
     }
 }
