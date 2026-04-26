@@ -1,4 +1,4 @@
-package dto.RickMorty;
+package rickMorty.dto;
 
 import java.util.ArrayList;
 import java.util.Date;

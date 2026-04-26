@@ -1,43 +1,68 @@
 package AuthTests;
 
-import dto.Auth.RegistrationRequest;
-import org.junit.jupiter.api.BeforeEach;
+import auth.dto.RegistrationRequest;
+import hooks.AuthHooks;
+import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import steps.Auth.AuthSteps;
-import utils.JsonReader;
 
+import static auth.enums.AuthMessage.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AuthTest {
-    private AuthSteps steps;
-    private RegistrationRequest validUser;
+public class AuthTest extends AuthHooks {
 
-    @BeforeEach
-    public void setUp() {
-        steps = new AuthSteps();
-        validUser = JsonReader.readRegistrationRequest("src/test/resources/user.json");
+    @Test
+    @DisplayName("Успешная регистрация")
+    void registrationUser() {
+        steps.register(validUser).statusCode(HttpStatus.SC_OK);
     }
 
     @Test
-    @DisplayName("тест на Регистрацию + Авторизацию + Выход из учетной записи")
-    public void fullAuthFlowTest() {
-        steps.registerUser(validUser);
+    @DisplayName("Логин с неверным username")
+    void loginUserNotFoundTest() {
+        steps.register(validUser);
+        RegistrationRequest wrongUser = new RegistrationRequest();
+        wrongUser.username = validUser.username + "_not_exists";
+        wrongUser.password = validUser.password;
+        String wrongUsernameBody = steps.login(wrongUser);
+        assertEquals(NOT_FOUND.getMessage(), wrongUsernameBody);
+    }
 
-        String wrongUsernameBody = steps.loginUserNotFound(validUser);
-        assertEquals("not found", wrongUsernameBody);
+    @Test
+    @DisplayName("Логин с неверным паролем")
+    void loginWrongPasswordTest() {
+        steps.register(validUser);
+        RegistrationRequest wrongUser = new RegistrationRequest();
+        wrongUser.username = validUser.username;
+        wrongUser.password = validUser.password + "wrong";
+        String wrongPasswordBody = steps.login(wrongUser);
+        assertEquals(NOT_RIGHT_PASS.getMessage(), wrongPasswordBody);
+    }
 
-        String wrongPasswordBody = steps.loginWrongPassword(validUser);
-        assertEquals("not right pass", wrongPasswordBody);
-
-        String tokenBody = steps.loginSuccess(validUser);
+    @Test
+    @DisplayName("Логин с верными данными")
+    void loginSuccessTest() {
+        steps.register(validUser);
+        String tokenBody = steps.login(validUser);
         assertNotNull(tokenBody, "Токен не должен быть null");
+    }
+
+    @Test
+    @DisplayName("Выход с неверным токеном")
+    void logoutUnauthorizedTest() {
+        steps.register(validUser);
+        String fakeToken = "00000000-0000-0000-0000-000000000000";
+        String logoutMessage = steps.logout(fakeToken);
+        assertEquals(NOT_FOUND.getMessage(), logoutMessage);
+    }
+
+    @Test
+    @DisplayName("Успешный выход")
+    void logoutSuccessTest() {
+        steps.register(validUser);
+        String tokenBody = steps.login(validUser);
         String token = tokenBody.split("token :")[1].trim();
-
-        String fakeLogoutMessage = steps.logoutUnauthorized("00000000-0000-0000-0000-000000000000");
-        assertEquals("not found", fakeLogoutMessage);
-
-        String successLogoutMessage = steps.logoutSuccess(token);
-        assertEquals("success logout", successLogoutMessage);
+        String logoutMessage = steps.logout(token);
+        assertEquals(SUCCESS_LOGOUT.getMessage(), logoutMessage);
     }
 }

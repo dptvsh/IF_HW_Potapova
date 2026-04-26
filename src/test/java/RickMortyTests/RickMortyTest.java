@@ -1,19 +1,15 @@
 package RickMortyTests;
 
-import dto.RickMorty.ApiResponse;
-import dto.RickMorty.Character;
-import dto.RickMorty.Episode;
+import hooks.RickMortyHooks;
+import rickMorty.dto.ApiResponse;
+import rickMorty.dto.Character;
+import rickMorty.dto.Episode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import steps.RickMorty.CharacterSteps;
-import steps.RickMorty.EpisodeSteps;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RickMortyTest {
-
-    private static final CharacterSteps characterSteps = new CharacterSteps();
-    private static final EpisodeSteps episodeSteps = new EpisodeSteps();
+public class RickMortyTest extends RickMortyHooks {
 
     @Test
     @DisplayName("Проверка расы и местоположения последнего персонажа последнего эпизода")

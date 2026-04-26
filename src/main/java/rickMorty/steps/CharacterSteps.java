@@ -1,8 +1,8 @@
-package steps.RickMorty;
+package rickMorty.steps;
 
-import api.RickMorty.CharacterRickMortyApi;
-import dto.RickMorty.ApiResponse;
-import dto.RickMorty.Character;
+import rickMorty.api.CharacterRickMortyApi;
+import rickMorty.dto.ApiResponse;
+import rickMorty.dto.Character;
 import io.restassured.common.mapper.TypeRef;
 import org.apache.http.HttpStatus;
 

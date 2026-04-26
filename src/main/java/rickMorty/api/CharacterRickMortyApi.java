@@ -1,4 +1,4 @@
-package api.RickMorty;
+package rickMorty.api;
 
 import io.restassured.response.ValidatableResponse;
 

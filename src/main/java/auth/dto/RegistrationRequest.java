@@ -1,4 +1,4 @@
-package dto.Auth;
+package auth.dto;
 
 public class RegistrationRequest {
     public String username;

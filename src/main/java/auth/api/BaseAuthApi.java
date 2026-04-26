@@ -1,6 +1,6 @@
-package api.Auth;
+package auth.api;
 
-import api.Specifications;
+import spec.Specifications;
 import config.ConfigReader;
 import io.restassured.RestAssured;
 

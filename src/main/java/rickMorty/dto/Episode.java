@@ -1,4 +1,4 @@
-package dto.RickMorty;
+package rickMorty.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

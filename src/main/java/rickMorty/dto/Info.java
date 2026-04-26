@@ -1,4 +1,4 @@
-package dto.RickMorty;
+package rickMorty.dto;
 
 public class Info {
     public int count;

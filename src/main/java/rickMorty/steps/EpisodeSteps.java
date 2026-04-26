@@ -1,7 +1,7 @@
-package steps.RickMorty;
+package rickMorty.steps;
 
-import api.RickMorty.EpisodeRickMortyApi;
-import dto.RickMorty.Episode;
+import rickMorty.api.EpisodeRickMortyApi;
+import rickMorty.dto.Episode;
 import org.apache.http.HttpStatus;
 
 public class EpisodeSteps {

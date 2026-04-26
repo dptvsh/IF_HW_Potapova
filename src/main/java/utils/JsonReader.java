@@ -1,7 +1,7 @@
 package utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dto.Auth.RegistrationRequest;
+import auth.dto.RegistrationRequest;
 
 import java.io.File;
 import java.io.IOException;
