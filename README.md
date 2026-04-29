@@ -31,8 +31,8 @@
 
 1. **Клонировать ветку с тестами**
    ```bash
-   git clone -b IF_HW6 <https://github.com/dptvsh/IF_HW_Potapova.git>
-   cd <IF_HW_Potapova>
+   git clone -b IF_HW6 https://github.com/dptvsh/IF_HW_Potapova.git
+   cd IF_HW_Potapova
    ```
 2. **Запустить все тесты**
     ```bash
