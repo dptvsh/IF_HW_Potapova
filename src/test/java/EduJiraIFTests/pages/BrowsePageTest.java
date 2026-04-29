@@ -20,7 +20,7 @@ public class BrowsePageTest extends WebHooks {
                         ConfigReader.get("username"),
                         ConfigReader.get("password"))
                 .shouldBeVisible()
-                .findTestSelenium();
+                .findTest(ConfigReader.get("task"));
 
         Assertions.assertEquals("сделать", browsePage.getStatus().toLowerCase(),
                 "Статус задачи не соответствует ожидаемому.");

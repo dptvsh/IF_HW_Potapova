@@ -2,6 +2,7 @@ package EduJiraIFPages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -13,6 +14,7 @@ public class LoginPage {
     private final SelenideElement loginButton = $x("//input[@id='login']")
             .as("Кнопка 'Войти'");
 
+    @Step("Вход пользователя {username}")
     public DashboardPage login(String username, String password) {
         usernameInput.shouldBe(Condition.visible).setValue(username);
         passwordInput.shouldBe(Condition.visible).setValue(password);

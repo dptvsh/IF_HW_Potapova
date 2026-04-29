@@ -2,6 +2,7 @@ package EduJiraIFPages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -24,10 +25,12 @@ public class ProjectsPage {
     private final SelenideElement allTasksTitle = $x("//span[@id='issues-subnavigation-title']")
             .as("Текст 'Все задачи'");
 
+    @Step("Проверить, что страница проектов открыта")
     public boolean isOpened() {
         return projectsHeader.isDisplayed();
     }
 
+    @Step("Перейти на страницу со всеми задачами")
     public ProjectsPage goToAllTasks() {
         String oldCounter = taskCounter.getText();
         changeFilter.shouldBe(Condition.visible).click();
@@ -38,11 +41,13 @@ public class ProjectsPage {
         return this;
     }
 
+    @Step("Нажать на кнопку 'Создать задачу'")
     public CreateNewIssuePage clickButtonCreateNewIssue() {
         createIssue.shouldBe(Condition.visible).click();
         return new CreateNewIssuePage();
     }
 
+    @Step("Получить количество задач")
     public int getTotalIssuesCount() {
         String counterText = taskCounter.shouldBe(Condition.visible, Duration.ofSeconds(10)).getText();
         Pattern pattern = Pattern.compile("\\d+");

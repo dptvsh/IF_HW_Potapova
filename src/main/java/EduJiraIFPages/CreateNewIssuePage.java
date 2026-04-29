@@ -2,6 +2,7 @@ package EduJiraIFPages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
 
@@ -69,14 +70,17 @@ public class CreateNewIssuePage {
         }
     }
 
+    @Step("Убедиться, что в описании нажата кнопка 'Визуальный'")
     public void checkVisualDescription() {
         checkVisualButton(visualDescription);
     }
 
+    @Step("Убедиться, что в окружении нажата кнопка 'Визуальный'")
     public void checkVisualEnvironment() {
         checkVisualButton(visualEnvironment);
     }
 
+    @Step("Создать новую задачу")
     public CreateNewIssuePage createNewIssue() {
         project.shouldHave(Condition.value("TEST"), Duration.ofSeconds(15));
         issueType.shouldHave(Condition.value("Ошибка"));
@@ -106,10 +110,12 @@ public class CreateNewIssuePage {
         return this;
     }
 
+    @Step("Проверить, что появилось всплывающее сообщение об успешно созданной задаче")
     public boolean isCreated() {
         return successfulMessage.isDisplayed();
     }
 
+    @Step("Перейти на страницу 'Мои открытые задачи'")
     public BrowsePage goToBrowsePage() {
         allTasks.shouldBe(Condition.visible).click();
         myOpenedTasks.shouldBe(Condition.visible).click();

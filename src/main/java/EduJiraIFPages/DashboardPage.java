@@ -3,6 +3,7 @@ package EduJiraIFPages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import config.ConfigReader;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
 
@@ -18,6 +19,7 @@ public class DashboardPage {
     private final SelenideElement searchField = $x("//input[@id='quickSearchInput']")
             .as("Поле быстрого поиска");
 
+    @Step("Проверить, что страница открыта")
     public boolean isOpened() {
         try {
             profile.shouldBe(Condition.visible, Duration.ofSeconds(10));
@@ -27,19 +29,22 @@ public class DashboardPage {
         }
     }
 
+    @Step("Проверить, что пользователь авторизован")
     public DashboardPage shouldBeVisible() {
         profile.shouldBe(Condition.visible, Duration.ofSeconds(5));
         return this;
     }
 
+    @Step("Перейти на страницу проекта")
     public ProjectsPage goToProjectsPage() {
         projects.shouldBe(Condition.visible).click();
         test.shouldBe(Condition.visible).click();
         return new ProjectsPage();
     }
 
-    public BrowsePage findTestSelenium() {
-        searchField.shouldBe(Condition.visible).setValue(ConfigReader.get("task")).pressEnter();
+    @Step("Найти задачу {task}")
+    public BrowsePage findTest(String task) {
+        searchField.shouldBe(Condition.visible).setValue(task).pressEnter();
         return new BrowsePage();
     }
 }
