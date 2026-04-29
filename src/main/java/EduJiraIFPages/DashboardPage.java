@@ -2,7 +2,6 @@ package EduJiraIFPages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import config.ConfigReader;
 import io.qameta.allure.Step;
 
 import java.time.Duration;
