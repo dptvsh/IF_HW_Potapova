@@ -1,4 +1,4 @@
-package EduJiraIFTests.pages;
+package EduJiraIFTests.jiraPagesTests;
 
 import EduJiraIFPages.CreateNewIssuePage;
 import EduJiraIFPages.LoginPage;
